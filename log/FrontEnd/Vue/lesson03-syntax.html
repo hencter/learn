@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>语法 | Vue.js.v2</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>模板语法</h1>
+      <div>
+        <h2>插值</h2>
+        <div>
+          <h3>文本</h3>
+          <span>Message: {{ msg }}</span>
+          <br />
+          <p>v-once 表示只渲染一次</p>
+          <span v-once>此值将不会改变: {{ msg }}</span>
+        </div>
+        
+        <div>
+          <h3>原始 HTML</h3>
+          <p>
+            如果插值语法（mustaches）中有原始 HTML，需要渲染此原始 HTML
+            则需要使用下方的 v-html 指令
+          </p>
+          使用 mustaches: {{ rawHtml }}
+          <br />
+          使用 v-html 指令: <span v-html="rawHtml"></span>
+        </div>
+
+        <div>
+          <h3>属性（Attribute）</h3>
+          <p>按钮的是否禁用由 isButtonDisabled 的的布尔值决定</p>
+          <button v-bind:disabled="isButtonDisabled">按钮</button>
+        </div>
+
+        <div>
+          <h3>使用 JavaScript 表达式</h3>
+          {{ number + 1 }}
+          <br />
+          {{ ok ? 'YES' : 'NO' }}
+          <br />
+          {{ message.split('').reverse().join('') }}
+          <br />
+          <span v-bind:id="'list-' + id">list- {{id}}</span>
+        </div>
+      </div>
+      <div>
+        <h2>指令</h2>
+        <p>seen 的值（布尔值）据决定能否看到下面的内容</p>
+        <p v-if="seen"><b>现在你看到我了</b></p>
+        <hr />
+        <!--  -->
+        <h3>参数</h3>
+        <p>指令能接收“参数”，指令名称后使用冒号表示</p>
+        <a v-bind:href="url">点击跳转到百度</a>
+        <br />
+        <span v-on:click="doSomething">点击会弹窗哦</span>
+        <hr />
+        <!--  -->
+        <h3>动态参数</h3>
+        <p>
+          从 2.6.0 开始，可以用方括号括起来的 JavaScript
+          表达式作为一个指令的参数：
+        </p>
+        <p>这个参数其实就是 HTML 的 DOM 属性</p>
+        <a v-bind:[attributename]="url"> 动态参数 </a>
+        <hr />
+        <!--  -->
+        <h3>修饰符</h3>
+      </div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          /* 插值用到的数据 */
+          msg: "你好，这里是一条消息",
+          rawHtml: '<b style="color: red">hello</b>', //未加工过的 HTML
+          isButtonDisabled: true, // 按钮是否禁用
+          number: 520,
+          ok: true,
+          message: "这行文字将会被反转",
+          id: "11",
+          /* 指令用到的数据 */
+          seen: true,
+          url: "https://www.baidu.com/",
+          attributename: "href",
+        },
+        methods: {
+          doSomething: function () {
+            alert("hello");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
