@@ -3,10 +3,13 @@ authors = ["hencter"]
 language = "zh"
 multilingual = false
 src = "src"
-title = "Learn"
+title = "学有未达"
 theme = "theme"
 description = "亦幸的网络笔记、知识图谱。"
 # fold = [""]
+
+[output.html]
+# additional-css = ["css/custom.css"]
 
 [output.html.print]
 # enable = false # 打印支持 
