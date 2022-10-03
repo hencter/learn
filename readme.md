@@ -1,3 +1,3 @@
 # Learn content
 
-just record my learn log.
+just record my learn.
